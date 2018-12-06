@@ -3,13 +3,22 @@
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
 \usepackage[absolute,overlay]{textpos}
-
+\usepackage{listingsutf8}
+\usepackage{listings-golang}
+\usepackage{tikz}
+\usepackage{color}
 
 \title{An intro to ko, developing the knative way}
 \date[KubeCon NA]{Dec 12th 2018, Seattle, KubeCon NA}
-\author[Author]{Andrea Frittoli \texttt{Developer Advocate} \texttt{andrea.frittoli@uk.ibm.com} \texttt{@blackchip76}}
+\author[Andrea]{
+  Andrea Frittoli \\
+  Developer Advocate \\
+  andrea.frittoli@uk.ibm.com \\
+  @blackchip76
+}
 
 \usetheme{ibmcloud}
+\setlststyle
 \AtBeginSection{\frame{\sectionpage}}
 
 \begin{document}
@@ -20,26 +29,125 @@
 
 \section{Microservice(s) in Go}
 
-\begin{frame}
-  \frametitle{Title}
-\end{frame}
+\begin{lgrayrwhiteframe}
+  \frametitle{From local...}
+  \large
+  \begin{itemize}
+    \item A few lines of code
+    \item Build and run locally
+  \end{itemize}
+  \begin{textblock*}{0.4\paperwidth}(0.55\paperwidth,0cm)
+    \begin{beamercolorbox}[leftskip=1cm,rightskip=1cm,rounded=true,sep=2.5ex]{Theorem}
+        \lstinputlisting[language=Golang]{code/helloworld_ms.go}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[leftskip=1cm,rightskip=1cm,rounded=true]{Theorem}
+        \lstinputlisting[language=bash]{code/build_and_run.sh}
+    \end{beamercolorbox}
+  \end{textblock*}
+\end{lgrayrwhiteframe}
+
+\begin{lblackrwhiteframe}
+  \frametitle{...to the Cloud}
+  \large
+  \begin{beamercolorbox}[wd=0.3\paperwidth]{text}
+    \begin{itemize}
+      \item Scaling
+      \item Resiliency
+      \item Security
+    \end{itemize}
+  \end{beamercolorbox}%
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.3\paperheight)
+    \centering
+    \hfill{5pt}
+    \includegraphics[width=0.22\paperwidth]{img/kubernetes.png}
+    \includegraphics[width=0.22\paperwidth]{img/istio.png}
+  \end{textblock*}
+\end{lblackrwhiteframe}
+
+\begin{blackframe}
+  \frametitle{Something is missing to get from A to B}
+  \begin{textblock*}{\paperwidth}(0cm,0.2\paperheight)
+    \includegraphics[width=\paperwidth]{img/blue-containers.jpg}
+    % https://www.publicdomainpictures.net/pictures/100000/velka/blue-containers.jpg
+  \end{textblock*}
+  \begin{textblock*}{0.2\paperwidth}(0.83\paperwidth,0.93\paperheight)
+    \includegraphics[width=0.03\paperwidth]{img/cc.png}
+    \includegraphics[width=0.03\paperwidth]{img/zero.png}
+  \end{textblock*}
+\end{blackframe}
+
+\begin{stripedframe}%
+  {
+    Define the container to build \\
+    Define the container to run \\
+    \begin{itemize}
+      \item One Dockerfile for both
+    \end{itemize}
+  }%
+  {
+    \vspace{30pt}
+    \setlststyledark
+    \lstinputlisting[language=Docker]{code/Dockerfile}
+    \setlststyle
+  }%
+  {
+    Build the image \\
+    Tag the image \\
+    Push the image to the registry \\
+    Update the image version \\
+    \begin{itemize}
+      \item Kubernetes manifests
+      \item Helm chart values
+    \end{itemize}
+  }%
+  {
+    \vspace{30pt}
+    \setlststyledark
+    \lstinputlisting[language=bash]{code/docker_build_tag_push.sh}
+    \setlststyle
+  }%
+\end{stripedframe}
 
 \section{Getting Started with Ko}
 
-\begin{frame}
-  \frametitle{Title}
-\end{frame}
+\begin{lgrayrwhiteframe}
+  \frametitle{Installing}
+\end{lgrayrwhiteframe}
+
+\begin{grayframe}
+  \frametitle{Container Registry}
+\end{grayframe}
 
 \section{Publish, Resolve, Apply, Delete}
 
-\begin{frame}
-  \frametitle{Title}
-\end{frame}
+\begin{grayframe}
+  \frametitle{Publish}
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Resolve}
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Apply \& Delete}
+\end{grayframe}
 
 \section{Ko and Knative}
 
-\begin{frame}
-  \frametitle{Title}
-\end{frame}
+\begin{grayframe}
+  \frametitle{Developing Knative}
+\end{grayframe}
+
+\begin{grayframe}
+  \frametitle{Knative \& Ko}
+\end{grayframe}
+
+\section{Q\&A}
+
+\begin{blackframe}
+  \frametitle{Thank You! Questions?}
+  \vspace{30pt}
+  \footnotesize\insertauthor\par---\par%
+\end{blackframe}
 
 \end{document}
