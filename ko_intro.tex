@@ -18,7 +18,19 @@
 }
 
 \usetheme{ibmcloud}
+
+% Code style
 \setlststyle
+
+\lstdefinelanguage{koyaml}{
+  keywords={github, com, afrittoli, examples, ms, go, helloworld},
+  sensitive=false,
+  comment=[l]{\#},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% Automatic section frame
 \AtBeginSection{\frame{\sectionpage}}
 
 \begin{document}
@@ -35,6 +47,8 @@
   \begin{itemize}
     \item A few lines of code
     \item Build and run locally
+    \item \small\texttt{github.com/afrittoli/examples/} \\
+    \texttt{ms/go/helloworld}
   \end{itemize}
   \begin{textblock*}{0.4\paperwidth}(0.55\paperwidth,0cm)
     \begin{beamercolorbox}[leftskip=1cm,rightskip=1cm,rounded=true,sep=2.5ex]{Theorem}
@@ -56,16 +70,16 @@
       \item Security
     \end{itemize}
   \end{beamercolorbox}%
-  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.3\paperheight)
+  \begin{textblock*}{0.5\paperwidth}(0.5\paperwidth,0.2\paperheight)
     \centering
-    \hfill{5pt}
-    \includegraphics[width=0.22\paperwidth]{img/kubernetes.png}
-    \includegraphics[width=0.22\paperwidth]{img/istio.png}
+    \includegraphics[width=0.20\paperwidth]{img/kubernetes.png}
+    \includegraphics[width=0.20\paperwidth]{img/istio.png}
+    \includegraphics[width=0.20\paperwidth]{img/knative.png}
   \end{textblock*}
 \end{lblackrwhiteframe}
 
 \begin{blackframe}
-  \frametitle{Something is missing to get from A to B}
+  \frametitle{Something is missing}
   \begin{textblock*}{\paperwidth}(0cm,0.2\paperheight)
     \includegraphics[width=\paperwidth]{img/blue-containers.jpg}
     % https://www.publicdomainpictures.net/pictures/100000/velka/blue-containers.jpg
@@ -78,10 +92,11 @@
 
 \begin{stripedframe}%
   {
-    Define the container to build \\
-    Define the container to run \\
+    Containers!
     \begin{itemize}
-      \item One Dockerfile for both
+      \item One to compile
+      \item One to run
+      \item A single Dockerfile for both
     \end{itemize}
   }%
   {
@@ -110,13 +125,74 @@
 
 \section{Getting Started with Ko}
 
-\begin{lgrayrwhiteframe}
-  \frametitle{Installing}
-\end{lgrayrwhiteframe}
+\begin{tblackbgrayframe}
+  \lstset{
+    otherkeywords={*,...,/,.},
+  }
+  \frametitle{Invisible containers}
+  \begin{textblock*}{\paperwidth}(0.32cm,0.2\paperheight)
+    \lstinputlisting[language=koyaml]{code/deployment.yaml}
+  \end{textblock*}
+  \setlststyle
+\end{tblackbgrayframe}
 
-\begin{grayframe}
-  \frametitle{Container Registry}
+\begin{2columnsframe}%
+  {
+    Install {\color{ibmblue}\texttt{go}} \\
+    and setup your environment: \\
+    \vspace{1ex}
+    \lstinputlisting[language=bash]{code/go.env}
+    \vspace{3ex}
+    Install {\color{ibmblue}\texttt{ko}}:
+    \vspace{1ex}
+    \lstinputlisting[language=bash]{code/install_ko.sh}
+  }%
+  {
+    Congratulations! \\
+    Ko is now available:
+    \vspace{1ex}
+    \lstinputlisting[language=bash]{code/ko_verify.sh}
+  }
+  \frametitle{Installing}
 \end{grayframe}
+
+\begin{2columnsframe}%
+  {
+    Import paths are hashed by default: \\
+    \vspace{3ex}
+    \tiny
+    \texttt{%
+      {\color{ibmdarkteal}github.com/afrittoli/examples/ms/go/}%
+      {\color{ibmblue}helloworld}
+    } \\
+    $\Longrightarrow$ \texttt{%
+      \$KO\_DOCKER\_REPO/{\color{ibmblue}helloworld}%
+      -{\color{ibmdarkteal}<path-hash>}
+    } \\
+    \vspace{10ex}
+    \normalsize
+    Import paths can be preserved \\
+    as long as the registry supports it: \\
+    \vspace{3ex}
+    \tiny
+    \texttt{%
+      {\color{ibmdarkteal}github.com/afrittoli/examples/ms/go/}%
+      {\color{ibmblue}helloworld}
+    } \\
+    $\Longrightarrow$ \texttt{%
+      \$KO\_DOCKER\_REPO/%
+      {\color{ibmdarkteal}github.com/afrittoli/examples/ms/ \\
+      go/}{\color{ibmblue}helloworld}
+    } \\
+  }%
+  {
+    Ko can use different container registries.\\
+    \vspace{1ex}
+    Using IBM Cloud Container Registry:
+    \lstinputlisting[language=bash]{code/ibm_cr_auth_ko.sh}
+  }
+  \frametitle{Container Registry}
+\end{2columnsframe}
 
 \section{Publish, Resolve, Apply, Delete}
 

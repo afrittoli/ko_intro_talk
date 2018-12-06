@@ -88,6 +88,21 @@
   \end{frame}
 }
 
+\newenvironment{2columnsframe}[2]
+{
+  \begin{frame}[t]
+    \vspace{5pt}
+    \begin{columns}[T,totalwidth=\textwidth]
+      \column{0.5\textwidth}
+        #1
+      \column{0.5\textwidth}
+        #2
+    \end{columns}
+}
+{
+  \end{frame}
+}
+
 \newenvironment{stripedframe}[4]
 {
   \setbeamercolor*{footline}{fg=white}
@@ -125,12 +140,36 @@
   \end{frame}
 }
 
+% top black bottom white
+\newenvironment{tblackbgrayframe}
+{
+  \setbeamercolor{background canvas}{bg=ibmlightgray}
+  \setbeamercolor*{footline}{fg=ibmblack}
+  \setbeamercolor{title}{fg=white}
+  \setbeamercolor{normal text}{fg=white}
+  \setbeamercolor{frametitle}{fg=white}
+  \setbeamercolor{itemize item}{fg=white}
+  \setbeamercolor{item}{fg=white}
+  \setbeamercolor{subitem}{fg=white}
+  \setbeamercolor{block body}{fg=white}
+  \usebeamercolor[fg]{normal text}
+  \setbeamertemplate{background}{
+  		\begin{tikzpicture}
+  			\fill[color=ibmblack] (0, 0) rectangle (\the\paperwidth, 0.2\paperheight);
+  		\end{tikzpicture}
+  	}
+  \begin{frame}[t]
+}
+{
+  \end{frame}
+}
+
 % Code listing style
 \newcommand{\setlststyle}{
   \lstset{ %
-    basicstyle=\ttfamily\tiny,
+    basicstyle=\ttfamily\tiny\color{ibmblack},
     numberstyle=\color{ibmgray}, % the style that is used for the line-numbers
-    commentstyle=\color{ibmteal},    % comment style
+    commentstyle=\color{ibmdarkteal},    % comment style
     keywordstyle=\color{ibmdarkblue},% keyword style
     stringstyle=\color{ibmblue},     % string literal style
     identifierstyle=\color{ibmblack},
@@ -154,7 +193,7 @@
   \lstset{ %
     basicstyle=\ttfamily\tiny,
     numberstyle=\color{ibmgray}, % the style that is used for the line-numbers
-    commentstyle=\color{ibmteal},    % comment style
+    commentstyle=\color{ibmdarkteal},    % comment style
     keywordstyle=\color{ibmdarkblue},% keyword style
     stringstyle=\color{ibmgray},     % string literal style
     identifierstyle=\color{white},
