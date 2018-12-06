@@ -261,11 +261,27 @@
 \section{Ko and Knative}
 
 \begin{grayframe}
-  \frametitle{Developing Knative}
-\end{grayframe}
-
-\begin{grayframe}
   \frametitle{Knative \& Ko}
+  Ko is part of the knative developer workflow:
+  \begin{itemize}
+    \item Used for Build, Serving, Eventing
+    \item Deploy locally (minikube)
+    \begin{itemize}
+      \item \texttt{KO\_DOCKER\_REPO=ko.local ko apply -f config/}
+    \end{itemize}
+    \item Deploy on a cluster
+    \begin{itemize}
+      \item \texttt{KO\_DOCKER\_REPO=registry.ng.bluemix.net/knative ko apply -f config/}
+    \end{itemize}
+    \item Run end to end tests
+    \begin{itemize}
+      \item \texttt{ko apply -R -f test/}
+    \end{itemize}
+    \item Release helper
+    \begin{itemize}
+      \item \texttt{ko resolve \${KO\_FLAGS} -f config/ > release.yaml}
+    \end{itemize}
+  \end{itemize}
 \end{grayframe}
 
 \section{Q\&A}
@@ -274,6 +290,11 @@
   \frametitle{Thank You! Questions?}
   \vspace{30pt}
   \footnotesize\insertauthor\par---\par%
+  \vspace{10ex}
+  References:
+  \begin{itemize}
+    \item \href{https://github.com/google/go-containerregistry/tree/master/cmd/ko}{github.com/google/go-containerregistry/tree/master/cmd/ko}
+  \end{itemize}
 \end{blackframe}
 
 \end{document}
