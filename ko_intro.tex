@@ -198,15 +198,65 @@
 
 \begin{grayframe}
   \frametitle{Publish}
+  Builds and publishes images. \\
+  \vspace{3ex}
+  Import paths:
+  \begin{itemize}
+    \item Fully qualified: \texttt{ko publish github.com/afrittoli/examples/ms/go/helloworld}
+    \item Relative within \texttt{GOPATH}: \texttt{ko publish .}
+  \end{itemize}
+  \vspace{3ex}
+  Configuration:
+  \begin{itemize}
+    \item Registry + namespace/project: \texttt{KO\_DOCKER\_REPO} env variable
+    \item Docker base image: \texttt{.ko.yaml}
+  \end{itemize}
 \end{grayframe}
 
 \begin{grayframe}
   \frametitle{Resolve}
+  Renders kubernetes manifests. \\
+  \begin{itemize}
+    \item  \texttt{ko resolve -f config/deployment.yaml}
+    \begin{itemize}
+      \item Build log on stderr
+      \item Manifest on stdout
+    \end{itemize}
+  \end{itemize}
+  \vspace{2ex}
+  In details:
+  \begin{itemize}
+    \item Takes kubernetes style manifests
+    \item Builds and publishes all images
+    \item Returns kubernetes manifests with published image digests
+  \end{itemize}
+  \vspace{2ex}
+  Release management:
+  \begin{itemize}
+    \item Generate a release: \texttt{ko resolve -f config/ > release.yaml}
+    \item Apply a release: \texttt{kubectl apply -f release.yaml}
+  \end{itemize}
 \end{grayframe}
 
-\begin{grayframe}
+\begin{2columnsframe}%
+  {
+    Apply:
+    \begin{itemize}
+      \item \texttt{ko resolve} + \texttt{kubectl apply}
+      \item \texttt Convenience method
+      \item \texttt Similar experience to \texttt{kubectl apply}
+    \end{itemize}
+  }
+  {
+    Delete:
+    \begin{itemize}
+      \item Passthrough to \texttt{kubectl delete}
+      \item \texttt Convenience method
+      \item \texttt Similar experience to \texttt{kubectl delete}
+    \end{itemize}
+  }
   \frametitle{Apply \& Delete}
-\end{grayframe}
+\end{2columnsframe}
 
 \section{Ko and Knative}
 
