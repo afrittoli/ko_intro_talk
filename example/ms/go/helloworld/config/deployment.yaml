@@ -15,6 +15,6 @@ spec:
       containers:
       - name: helloworld
         # This is the import path for the Go binary to build and run.
-        image: github.com/afrittoli/examples/ms/go/helloworld
+        image: github.com/afrittoli/ko_intro_talk/example/ms/go/helloworld
         ports:
         - containerPort: 8080
