@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ibm_eu_login
+ibmcloud login
 ibmcloud cr login
 export DOCKER_TOKEN=$(ibmcloud cr token-get 5e83b578-aa80-5e85-8932-94b453da64ef -q)
 docker login -u token -p $DOCKER_TOKEN registry.eu-gb.bluemix.net
