@@ -4,6 +4,7 @@ import (
   "flag"
   "fmt"
   "net/http"
+  "strings"
 )
 
 func main() {
@@ -11,7 +12,8 @@ func main() {
   flag.Parse()
 
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "{\"hello\": \"%s\"}", r.URL.Path)
+    recipient := strings.Replace(r.URL.Path, "/", "", -1)
+    fmt.Fprintf(w, "{\"hello\": \"%s\"}", recipient)
   })
 
   http.ListenAndServe(fmt.Sprintf(":%d", *hwPort), nil)
