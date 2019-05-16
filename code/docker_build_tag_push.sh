@@ -2,7 +2,7 @@
 
 # Define variables
 TAG=$(git log -1 --pretty=%H)
-REGISTRY=registry.ng.bluemix.net/knative
+REGISTRY=de.icr.io/knative
 
 # Build and push the image
 docker build .

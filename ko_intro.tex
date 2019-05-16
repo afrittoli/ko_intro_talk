@@ -10,7 +10,7 @@
 
 
 \title{An intro to ko, developing the knative way}
-\date[KubeCon NA]{Dec 12th 2018, Seattle, KubeCon NA}
+\date[KubeCon EU 2019]{May 21st 2019, Barcelona, KubeCon EU}
 \author[Andrea]{
   Andrea Frittoli \\
   Developer Advocate \\
@@ -149,9 +149,8 @@
     \lstinputlisting[language=bash]{code/install_ko.sh}
   }%
   {
-    Congratulations! \\
-    Ko is now available:
-    \vspace{1ex}
+    Congratulations! Ko is now available:
+    \vspace{0.5ex}
     \lstinputlisting[language=bash]{code/ko_verify.sh}
   }
   \frametitle{Installing}
@@ -285,7 +284,7 @@
     \end{itemize}
     \item Deploy on a cluster
     \begin{itemize}
-      \item \texttt{KO\_DOCKER\_REPO=registry.ng.bluemix.net/knative ko apply -f config/}
+      \item \texttt{KO\_DOCKER\_REPO=de.icr.io/knative ko apply -f config/}
     \end{itemize}
     \item Run end to end tests
     \begin{itemize}
@@ -308,7 +307,7 @@
   References:
   \begin{itemize}
     \item \href{https://github.com/afrittoli/ko_intro_talk}{github.com/afrittoli/ko\_intro\_talk}
-    \item \href{https://github.com/google/go-containerregistry/tree/master/cmd/ko}{github.com/google/go-containerregistry/tree/master/cmd/ko}
+    \item \href{https://github.com/google/ko}{github.com/google/ko}
   \end{itemize}
 \end{blackframe}
 

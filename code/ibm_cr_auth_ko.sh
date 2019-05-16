@@ -8,8 +8,8 @@ ibmcloud cr info
 # Define a namespace
 ibmcloud cr namespace-add knative
 
-# Create a write token
-ibmcloud cr token-add --readwrite --non-expiring --description "ko token"
+# Create a user API key. Read the "apikey" field from "key_file"
+ibmcloud iam api-key-create ko-to-cr-key -d "API Key for ko" --file key_file
 
 # Store credentials in ~/.docker/config.json
-docker login -u token -p <token> <endpoint>
+docker login -u iamapikey -p <apikey> <endpoint>
